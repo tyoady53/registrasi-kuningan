@@ -19,8 +19,19 @@ class DatabaseSeeder extends Seeder
             'username' => 'admin',
             'firstname' => 'Admin',
             'lastname' => 'Admin',
-            'email' => 'admin@argon.com',
+            'email' => 'admin@test.com',
             'password' => bcrypt('secret')
         ]);
+        DB::table('users')->insert([
+            'username' => 'Customer Service',
+            'firstname' => 'Customer',
+            'lastname' => 'Service',
+            'email' => 'cs@test.com',
+            'password' => bcrypt('secret')
+        ]);
+        $this->call(PermissionTableSeeder::class);
+        $this->call(RolesTableSeeder::class);
+        $this->call(ChoiceTestAnswerSeeder::class);
+        $this->call(ChoiceTestQuestionSeeder::class);
     }
 }
