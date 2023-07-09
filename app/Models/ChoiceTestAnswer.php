@@ -5,18 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ChoiceTest extends Model
+class ChoiceTestAnswer extends Model
 {
     use HasFactory;
     protected $guarded = [
         'id',
     ];
 
-    public function user(){
-        return $this->belongsTo(User::class,'id','user_id');
-    }
-
     public function question(){
-        return $this->hasMany(ChoiceTestQuestion::class,'id','question_array');
+        return $this->belongsTo(ChoiceTestQuestion::class,'id','question_id');
     }
 }

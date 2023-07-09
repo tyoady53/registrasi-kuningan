@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('choice_test_question', function (Blueprint $table) {
+        Schema::create('choice_test_questions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('case_id');
             $table->unsignedBigInteger('role_id');
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('choice_test_question');
+        Schema::dropIfExists('choice_test_questions');
     }
 };

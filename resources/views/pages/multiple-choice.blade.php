@@ -56,8 +56,19 @@
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-md-8">
-                <div class="card">
-                    <form role="form" method="POST" action={{ route('profile.update') }} enctype="multipart/form-data">
+                <div class="card p-5">
+                    @foreach ($questions as $idx => $question)
+                    <ul class="navbar-nav">
+                        {{ $idx+1 }}. {{ $question->question }}
+                        @foreach ($question->answer as $answer)
+                        <li class="nav-item ms-5">
+                            {{ $answer->answer }}
+                        </li>
+                        @endforeach
+                    </ul>
+                    <br>
+                    @endforeach
+                    {{-- <form role="form" method="POST" action={{ route('profile.update') }} enctype="multipart/form-data">
                         @csrf
                         <div class="card-header pb-0">
                             <div class="d-flex align-items-center">
@@ -134,10 +145,10 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
-            <div class="col-md-4">
+            {{-- <div class="col-md-4">
                 <div class="card card-profile">
                     <img src="/img/bg-profile.jpg" alt="Image placeholder" class="card-img-top">
                     <div class="row justify-content-center">
@@ -196,7 +207,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
         @include('layouts.footers.auth.footer')
     </div>

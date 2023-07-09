@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChoiceTest;
+use App\Models\ChoiceTestAnswer;
+use App\Models\ChoiceTestQuestion;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -13,9 +15,15 @@ class ChoiceTestController extends Controller
      */
     public function index()
     {
-        return view('pages.multiple-choice');
-        // dd(auth()->user());
-        // multiple-choice
+        $data = ChoiceTest::where('user_id',auth()->user()->id)->first();
+        $question_array = $data->question_array;
+        $questionIds = explode(",",$question_array);
+        $questions = ChoiceTestQuestion::whereIn('id',$questionIds)->with('answer')->get();
+        // dd($questions);
+        return view('pages.multiple-choice',[
+            'data'      => $data,
+            'questions' => $questions,
+        ]);
     }
 
     /**
