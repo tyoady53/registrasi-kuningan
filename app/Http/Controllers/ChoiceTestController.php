@@ -15,23 +15,40 @@ class ChoiceTestController extends Controller
      */
     public function index()
     {
-        $data = ChoiceTest::where('user_id',auth()->user()->id)->first();
-        $question_array = $data->question_array;
-        $questionIds = explode(",",$question_array);
-        $questions = ChoiceTestQuestion::whereIn('id',$questionIds)->with('answer')->get();
-        // dd($questions);
+        $questions = '';
+        $data = ChoiceTest::where('user_id',auth()->user()->id)->orderBy('id','DESC')->first();
+        if($data){
+            $question_array = $data->question_array;
+            $questionIds = explode(",",substr($question_array,1,-1));
+            $questions = ChoiceTestQuestion::whereIn('id',$questionIds)->with('answer')->get();
+        }
+        // dd($data);
         return view('pages.multiple-choice',[
             'data'      => $data,
-            'questions' => $questions,
+            'questions' => $questions
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $a = '';
+        $posts = ChoiceTestQuestion::inRandomOrder()
+                ->limit(30)
+                ->get();
+        foreach($posts as $post){
+            $a .= $post->id.',';
+        }
+        $insert = ChoiceTest::create([
+            'user_id'       => auth()->user()->id,
+            'question_array'=> '['.$a.']',
+            'score'         => 0,
+        ]);
+        if($insert){
+            return redirect()->route('test-mulitple_choice');
+        }
     }
 
     /**

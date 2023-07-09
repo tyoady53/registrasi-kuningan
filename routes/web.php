@@ -49,5 +49,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::prefix('test')->group(function () {
         Route::get('/mulitple_choice', [ChoiceTestController::class, 'index'])->name('test-mulitple_choice');
+        Route::post('/create', [ChoiceTestController::class, 'create'])->name('test-create');
     });
 });
