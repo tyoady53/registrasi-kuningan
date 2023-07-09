@@ -16,15 +16,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <!-- Nucleo Icons -->
-    <link href="{{ assets('css/nucleo-icons.css') }}" rel="stylesheet" />
+    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
     {{-- ./assets/css/nucleo-icons.css --}}
-    <link href="{{ assets('css/nucleo-svg.css') }}" rel="stylesheet" />
+    <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
     {{-- <link href="./assets/css/nucleo-svg.css" rel="stylesheet" /> --}}
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
-    <link id="pagestyle" href="{{ assets('css/argon-dashboard.css') }}" rel="stylesheet" />
+    <link id="pagestyle" href="../assets/css/argon-dashboard.css" rel="stylesheet" />
     {{-- <link id="pagestyle" href="assets/css/argon-dashboard.css" rel="stylesheet" /> --}}
 </head>
 
