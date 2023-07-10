@@ -20,9 +20,12 @@ class ChoiceTestController extends Controller
         if($data){
             $question_array = $data->question_array;
             $questionIds = explode(",",substr($question_array,1,-1));
-            $questions = ChoiceTestQuestion::whereIn('id',$questionIds)->with('answer')->get();
+            $questions = ChoiceTestQuestion::whereIn('id', $questionIds)
+            ->with(['answer' => function ($query) {
+                $query->select('id', 'answer', 'question_id');
+            }])
+            ->get();
         }
-        // dd($data);
         return view('pages.multiple-choice',[
             'data'      => $data,
             'questions' => $questions
