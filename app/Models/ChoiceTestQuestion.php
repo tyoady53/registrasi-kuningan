@@ -16,7 +16,11 @@ class ChoiceTestQuestion extends Model
         return $this->belongsTo(ChoiceTestCase::class,'case_id','id');
     }
 
-    public function answer(){
+    public function user_answer(){
+        return $this->hasMany(ChoiceTestUserAnswer::class,'question_id','id');
+    }
+
+    public function answer_options(){
         return $this->hasMany(ChoiceTestAnswer::class,'question_id','id');
     }
 }

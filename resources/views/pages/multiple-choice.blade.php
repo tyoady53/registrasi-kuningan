@@ -50,10 +50,13 @@
                     @foreach ($questions as $idx => $question)
                     <ul class="navbar-nav">
                         <label><h6>{{ $idx+1 }}. {{ $question->question }}</h6></label>
-                        @foreach ($question->answer as $answer)
+                        {{-- @if ($question->user_answer)
+                            {{ $question->user_answer->answer }}
+                        @endif --}}
+                        @foreach ($question->answer_options as $option)
                         <li class="nav-item ms-5">
-                            <input type="radio" name="answer_{{ $question->id }}" id="q_{{ $answer->id }}" value="{{ $question->id }}-{{ $answer->id }}" onclick="answerEach()"/>
-                            <label for="q_{{ $answer->id }}">{{ $answer->answer }}</label>
+                            <input type="radio" name="answer_{{ $question->id }}" id="q_{{ $option->id }}" value="{{ $question->id }}-{{ $option->id }}" onclick="answerEach()" @if($question->user_answer) @if($question->user_answer->answer == $option->id) checked @endif @endif/>
+                            <label for="q_{{ $option->id }}">{{ $option->answer }}</label>
                         </li>
                         @endforeach
                     </ul>
@@ -101,7 +104,23 @@
         }
 
         function push_data(value){
-            console.log("Push data : "+value)
+            var formData = new FormData();
+            const myArray = value.split("-");
+            // Add form fields to the FormData object
+            formData.append('question', myArray[0]);
+            formData.append('answer', myArray[1]);
+
+            axios.defaults.headers.common['X-CSRF-TOKEN'] = '{{ csrf_token() }}';
+
+            axios.post('/each_answer', formData,)
+            .then(function(response) {
+                // Handle the response here
+                console.log(response.data);
+            })
+            .catch(function(error) {
+                // Handle any errors here
+                console.error(error);
+            });
         }
     </script>
 @endsection

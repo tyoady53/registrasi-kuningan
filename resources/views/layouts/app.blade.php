@@ -26,6 +26,11 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="../assets/css/argon-dashboard.css" rel="stylesheet" />
     {{-- <link id="pagestyle" href="assets/css/argon-dashboard.css" rel="stylesheet" /> --}}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{-- <script>
+        axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').content;
+    </script> --}}
 </head>
 
 <body class="{{ $class ?? '' }}">
