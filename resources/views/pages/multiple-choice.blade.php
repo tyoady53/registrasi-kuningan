@@ -1,7 +1,7 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Choice Options Test - Key Performance Indicator'])
+    @include('layouts.navbars.auth.topnav', ['title' => 'Choice Options Test'])
     <div class="card shadow-lg mx-4 card-profile-bottom" id="user_info">
         <div class="card-body p-3">
             <div class="row gx-4">
