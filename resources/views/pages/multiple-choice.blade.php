@@ -92,6 +92,84 @@
         .additionalDiv {
             margin-top: 22.5rem;
         }
+
+        @media(max-width: 1199px){
+            .fixed {
+                position: fixed;
+                top: 0;
+                right: 0;
+                left: 0;
+                margin-top: 15px;
+                z-index: 99;
+            }
+
+            .additionalDiv {
+                margin-top: 22rem;
+            }
+        }
+
+        @media(max-width: 910px){
+            .card.card-profile-bottom{
+                margin-top: 15rem;
+            }
+            .py-4{
+                padding-top: 1rem !important;
+            }
+            .fixed {
+                position: fixed;
+                top: 0;
+                right: 0;
+                left: 0;
+                margin-top: 15px;
+                z-index: 99;
+            }
+
+            .additionalDiv {
+                margin-top: 22rem;
+            }
+        }
+
+        @media(max-width: 501px){
+            .card.card-profile-bottom{
+                margin-top: 11rem;
+            }
+            .py-4{
+                padding-top: 1rem !important;
+            }
+            .fixed {
+                position: fixed;
+                top: 0;
+                right: 0;
+                left: 0;
+                margin-top: 15px;
+                z-index: 99;
+            }
+
+            .additionalDiv {
+                margin-top: 20rem;
+            }
+        }
+
+        @media(max-width: 464px){
+            .card.card-profile-bottom{
+                margin-top: 7.5rem;
+            }
+            .py-4{
+                padding-top: 0.55rem !important;
+            }
+            .fixed {
+                position: fixed;
+                top: 0;
+                right: 0;
+                left: 0;
+                margin-top: 15px;
+                z-index: 99;
+            }
+
+            .additionalDiv {
+                margin-top: 18rem;
+            }
+        }
     </style>
 
     <script type="text/javascript">
