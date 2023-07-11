@@ -131,7 +131,7 @@
 
         @media(max-width: 501px){
             .card.card-profile-bottom{
-                margin-top: 11rem;
+                margin-top: 12rem;
             }
             .py-4{
                 padding-top: 1rem !important;
@@ -152,7 +152,7 @@
 
         @media(max-width: 464px){
             .card.card-profile-bottom{
-                margin-top: 7.5rem;
+                margin-top: 12rem;
             }
             .py-4{
                 padding-top: 0.55rem !important;
@@ -167,7 +167,7 @@
             }
 
             .additionalDiv {
-                margin-top: 18rem;
+                margin-top: 20rem;
             }
         }
     </style>
