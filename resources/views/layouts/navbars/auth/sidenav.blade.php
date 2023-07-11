@@ -5,7 +5,7 @@
             aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0" href="{{ route('home') }}">
             <img src="../img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
-            <span class="ms-1 font-weight-bold">Test Enchencement</span>
+            <span class="ms-1 font-weight-bold">Key Performance Indicator</span>
         </a>
     </div>
     <hr class="horizontal dark mt-0">
