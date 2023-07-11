@@ -45,9 +45,11 @@
     <div class="container-fluid py-4">
         <div class="row">
             @if($questions)
+            {{-- {{ count($answer_array) }} --}}
             <div class="col-md-12">
                 <div class="card p-3">
                     @foreach ($questions as $idx => $question)
+                    {{ $question }}
                     <ul class="navbar-nav">
                         <label><h6>{{ $idx+1 }}. {{ $question->question }}</h6></label>
                         {{-- @if ($question->user_answer)

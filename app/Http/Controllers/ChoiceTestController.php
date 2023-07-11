@@ -27,7 +27,7 @@ class ChoiceTestController extends Controller
             $questionIds = explode(",",substr($question_array,1,-1));
             $questions = ChoiceTestQuestion::whereIn('id', $questionIds)
             ->with(['answer_options' => function ($query) {
-                $query->select('id', 'answer', 'question_id');
+                $query->select('id', 'answer', 'question_id')->inRandomOrder();
             }])->with(['user_answer' => function ($query) {
                 $query->where('user_id',auth()->user()->id);
             }])
