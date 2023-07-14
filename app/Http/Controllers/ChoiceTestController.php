@@ -37,7 +37,7 @@ class ChoiceTestController extends Controller
                 return $question;
             });
         }
-        // dd($questions);
+        dd($questions);
         return view('pages.multiple-choice',[
             'data'      => $data,
             'questions' => $questions
