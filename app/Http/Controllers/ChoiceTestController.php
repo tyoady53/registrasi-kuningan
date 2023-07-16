@@ -20,6 +20,14 @@ class ChoiceTestController extends Controller
      */
     public function index()
     {
+        // dd(auth()->user());
+        $rolename = '';
+        $user_id = auth()->user()->id;
+        $user = User::where('id',$user_id)->first();
+        $rolenames = $user->getRoleNames();
+        if(count($rolenames)){
+            $rolename = $rolenames[0];
+        }
         $questions = '';
         $data = ChoiceTest::where('user_id',auth()->user()->id)->orderBy('id','DESC')->first();
         if($data){
@@ -37,8 +45,9 @@ class ChoiceTestController extends Controller
                 return $question;
             });
         }
-        dd($questions);
+        // dd($questions);
         return view('pages.multiple-choice',[
+            'role'      => $rolename,
             'data'      => $data,
             'questions' => $questions
         ]);

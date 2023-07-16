@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -26,7 +27,9 @@ class UserProfileController extends Controller
             'about' => ['max:255']
         ]);
 
-        auth()->user()->update([
+        $user = User::where('id', auth()->user()->id)->first();
+
+        $user->update([
             'username' => $request->get('username'),
             'firstname' => $request->get('firstname'),
             'lastname' => $request->get('lastname'),

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -24,17 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $question = DB::table('choice_test_question')->get();
-        // $dd_question = '';
-        // foreach($question as $q){
-        //     $dd_question .= "DB::table('users')->insert(['case_id' => '1','question' => '".$q->question."']);\n";
-        // }
-        // $answers = DB::table('choice_test_answer')->get();
-        // $dd_answer = '';
-        // foreach($answers as $a){
-        //     $dd_answer .= "DB::table('choice_test_answer')->insert(['question_id' => '".$a->question_id."','value' => '".$a->value."','question' => '".$a->answer."']);\n";
-        // }
-        // dd($dd_question,$dd_answer);
-        return view('pages.dashboard');
+        $rolename = '';
+        $user_id = auth()->user()->id;
+        $user = User::where('id',$user_id)->first();
+        $rolenames = $user->getRoleNames();
+        if(count($rolenames)){
+            $rolename = $rolenames[0];
+        }
+        return view('pages.dashboard',[
+            'role'      => $rolename,
+        ]);
     }
 }

@@ -25,6 +25,8 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\ChoiceTestController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
 	Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
@@ -47,6 +49,19 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/sign-up-static', [PageController::class, 'signup'])->name('sign-up-static');
 	Route::get('/{page}', [PageController::class, 'index'])->name('page');
 	Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+    Route::prefix('user')->group(function () {
+        Route::get('/index', [UserController::class, 'index'])->name('user.index');
+        Route::get('/edit/{slug}', [UserController::class, 'edit'])->name('user.edit');
+        Route::get('/create', [UserController::class, 'create'])->name('user.create');
+        Route::post('/update/{slug}', [UserController::class, 'update'])->name('user.update');
+        Route::post('/store', [UserController::class, 'store'])->name('user.store');
+    });
+    Route::prefix('role')->group(function () {
+        Route::get('/index', [RoleController::class, 'index'])->name('role.index');
+        Route::post('/store', [RoleController::class, 'store'])->name('role.store');
+        Route::get('/show', [RoleController::class, 'show'])->name('role.show');
+    });
 
     Route::prefix('test')->group(function () {
         Route::get('/mulitple_choice', [ChoiceTestController::class, 'index'])->name('test-mulitple_choice');
