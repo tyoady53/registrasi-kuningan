@@ -48,7 +48,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-12">
-                            <button class="btn btn-primary shadow-sm rounded-sm" type="submit">UPDATE</button>
+                            <button class="btn btn-success shadow-sm rounded-sm" type="submit">SAVE</button>
                             <button class="btn btn-warning shadow-sm rouned-sm ms-3" type="reset">RESET</button>
                         </div>
                     </div>

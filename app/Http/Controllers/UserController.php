@@ -39,7 +39,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $slug = md5(Carbon::now());
+        $slug   = md5(Carbon::now());
+        $pwd    = bcrypt('secret');
         $this->validate($request, [
             'username'  =>  'required',
             'email'     =>  'required|unique:users',
@@ -49,9 +50,9 @@ class UserController extends Controller
             'firstname'     => $request->firstname,
             'lastname'      => $request->lastname,
             'username'      => $request->username,
-            'password'      => bcrypt('secret'),
             'email'         => $request->email,
-            'slug'          => $slug
+            'slug'          => $slug,
+            'password'      => 'secret'
         ]);
 
         $insert->assignRole($request->roles);
