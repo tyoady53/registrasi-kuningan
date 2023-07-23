@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('slug');
-            //->unique()
+        Schema::create('role_play_sub_groups', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('group_id');
+            $table->string('name')->nullable();
+            $table->string('gender',2);
+            $table->timestamps();
         });
     }
 
@@ -22,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('role_play_sub_groups');
     }
 };

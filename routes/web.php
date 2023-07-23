@@ -25,8 +25,10 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\ChoiceTestController;
+use App\Http\Controllers\JudgesHasUserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Models\JudgesHasUser;
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
 	Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
@@ -59,8 +61,16 @@ Route::group(['middleware' => 'auth'], function () {
     });
     Route::prefix('role')->group(function () {
         Route::get('/index', [RoleController::class, 'index'])->name('role.index');
+        Route::get('/create', [RoleController::class, 'create'])->name('role.create');
+        Route::get('/edit/{slug}', [RoleController::class, 'edit'])->name('role.edit');
         Route::post('/store', [RoleController::class, 'store'])->name('role.store');
+        Route::post('/update/{slug}', [RoleController::class, 'update'])->name('role.update');
         Route::get('/show', [RoleController::class, 'show'])->name('role.show');
+    });
+    Route::prefix('judges')->group(function () {
+        Route::get('/index', [JudgesHasUserController::class, 'index'])->name('judges.index');
+        Route::get('/edit/{slug}', [JudgesHasUserController::class, 'edit'])->name('judges.edit');
+        Route::post('/update/{slug}', [JudgesHasUserController::class, 'update'])->name('judges.update');
     });
 
     Route::prefix('test')->group(function () {

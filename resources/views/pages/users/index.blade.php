@@ -16,24 +16,32 @@
                 <table class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th scope="col"> User Name </th>
-                            <th scope="col" style="width:50%">Role</th>
-                            <th scope="col" style="width:20%">Actions</th>
+                            <th scope="col" class="text-center"> Name </th>
+                            <th scope="col" class="text-center"> Gender </th>
+                            <th scope="col" class="text-center">Role</th>
+                            <th scope="col" style="width:10%" class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($user as $u)
                         <tr>
-                            <td>{{ $u->firstname }} {{ $u->lastname }}</td>
-                                <td>
-                                    @if(count($u->roles))
+                            <td>{{ $u->name }}</td>
+                            <td class="text-center">
+                                @if($u->gender == 'm')
+                                    Laki-Laki
+                                @else
+                                    Perempuan
+                                @endif
+                            </td>
+                            <td class="text-center">
+                                @if(count($u->roles))
                                     <span class="badge bg-primary shadow border-0 ms-2 mb-2">
                                         {{ $u->roles[0]->name }}
                                     </span>
-                                    @endif
-                                </td>
-                                <td class="text-center">
-                                    <a href="{{ './edit/'.$u->slug }}" class="btn btn-success btn-sm me-2"><i class="fa fa-pencil-alt me-1"></i> EDIT</a>
+                                @endif
+                            </td>
+                            <td class="text-center">
+                                <a href="{{ './edit/'.$u->encrypted_id }}" class="btn btn-success btn-sm me-2"><i class="fa fa-pencil-alt me-1"></i> EDIT</a>
                                     {{-- <a href="{{ route('user.edit', $u->slug) }}" class="btn btn-success btn-sm me-2"><i class="fa fa-pencil-alt me-1"></i> EDIT</a> --}}
                             </td>
                         </tr>

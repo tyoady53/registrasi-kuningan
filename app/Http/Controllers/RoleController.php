@@ -19,20 +19,11 @@ class RoleController extends Controller
         }
         $user = User::where('id',$user_id)->first();
         $rolenames = $user->getRoleNames();
-        dd(Role::all());
-        if(count($rolenames)){
-            // dd($rolename);
-        }
-        $roles = Role::when(request()->q, function($roles) {
-            $roles = $roles->where('name', 'like', '%' . request()->q . '%');
-        })->with('permissions')->latest()->paginate(5);
+        $roles = Role::all();
 
-        // if(str_contains($a, 'roles.index')){
-            return view('pages.multiple-choice',[
-                // 'data'      => $data,
-                // 'questions' => $questions
+            return view('pages.roles.index',[
+                'data'      => $roles,
             ]);
-        // }
     }
 
     /**
@@ -40,7 +31,10 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.roles.create',[
+            'user'      => [],
+            'roles'     => [],
+        ]);
     }
 
     /**
@@ -48,7 +42,13 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $insert = Role::create([
+            'name'      => $request->rolename,
+            'guard_name'=> 'web'
+        ]);
+
+        return redirect('role/index');
     }
 
     /**

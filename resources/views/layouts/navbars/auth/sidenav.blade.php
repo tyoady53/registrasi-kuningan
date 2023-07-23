@@ -25,6 +25,7 @@
                 </div>
                 <h6 class="ms-2 text-uppercase text-xs font-weight-bolder opacity-6 mb-0">Test</h6>
             </li>
+            @if(auth()->user()->getRoleNames()[0] != 'Judge')
             <li class="nav-item">
                 <a class="nav-link {{ str_contains(request()->url(), 'mulitple_choice') == true ? 'active' : '' }}" href="{{ route('test-mulitple_choice') }}">
                     <div
@@ -57,16 +58,22 @@
                     <span class="nav-link-text ms-1">Multiple Choice Test</span>
                 </a>
             </li>
-            @if(auth()->user()->getRoleNames()[0] == 'superadmin')
+            @endif
+            @if(str_contains(auth()->user()->getRoleNames()[0],'admin'))
             {{-- {{ auth()->user()->getRoleNames()[0] }} --}}
+            {{-- <i class="ni ni-bullet-list-67 text-dark text-sm opacity-10"></i> --}}
             <li class="nav-item">
                 <a class="nav-link {{ str_contains(request()->url(), 'user') == true ? 'active' : '' }}" href="{{ route('page', ['page' => 'user/index']) }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-bullet-list-67 text-dark text-sm opacity-10"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path d="M256 288c79.5 0 144-64.5 144-144S335.5 0 256 0 112 64.5 112 144s64.5 144 144 144zm128 32h-55.1c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16H128C57.3 320 0 377.3 0 448v16c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48v-16c0-70.7-57.3-128-128-128z"/>
+                        </svg>
                     </div>
                     <span class="nav-link-text ms-1">User Management</span>
                 </a>
             </li>
+            @endif
+            @if(auth()->user()->getRoleNames()[0] == 'superadmin')
             <li class="nav-item">
                 <a class="nav-link {{ str_contains(request()->url(), 'role') == true ? 'active' : '' }}" href="{{ route('page', ['page' => 'role/index']) }}">
                     <div
@@ -74,6 +81,15 @@
                         <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Role</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ str_contains(request()->url(), 'judges') == true ? 'active' : '' }}" href="{{ route('page', ['page' => 'judges/index']) }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Judges Settings</span>
                 </a>
             </li>
             @endif

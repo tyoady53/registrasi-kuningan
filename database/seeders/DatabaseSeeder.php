@@ -15,23 +15,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'username' => 'admin',
-            'firstname' => 'Admin',
-            'lastname' => 'Admin',
-            'email' => 'admin@test.com',
-            'password' => bcrypt('secret')
-        ]);
-        DB::table('users')->insert([
-            'username' => 'Customer Service',
-            'firstname' => 'Customer',
-            'lastname' => 'Service',
-            'email' => 'cs@test.com',
-            'password' => bcrypt('secret')
-        ]);
         $this->call(PermissionTableSeeder::class);
         $this->call(RolesTableSeeder::class);
+        $this->call(UserTableSeeder::class);
         $this->call(ChoiceTestAnswerSeeder::class);
         $this->call(ChoiceTestQuestionSeeder::class);
+        $this->call(RolePlayGroup::class);
+        $this->call(RolePlaySubGroup::class);
+        $this->call(RolePlayQuestions::class);
     }
 }

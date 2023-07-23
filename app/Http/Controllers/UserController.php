@@ -39,21 +39,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $slug   = md5(Carbon::now());
+        // dd($request);
         $pwd    = bcrypt('secret');
         $this->validate($request, [
-            'username'  =>  'required',
             'email'     =>  'required|unique:users',
         ]);
 
         $insert = User::create([
-            'firstname'     => $request->firstname,
-            'lastname'      => $request->lastname,
-            'username'      => $request->username,
+            'name'          => $request->name,
+            'gender'        => $request->gender,
             'email'         => $request->email,
-            'slug'          => $slug,
-            'password'      => 'secret'
+            'username'      => $request->email,
+            'active'        => '1',
+            'password'      => 'secret',
+            'encrypted_id'  => '-'
         ]);
+
+        // dd('insert->id '.$insert->id,$insert->id.Carbon::now(),'md5 Now'.md5(Carbon::now()),'md5 uniq '.md5($insert->id.Carbon::now()));
+
+        $encrypted_id   = md5($insert->id.Carbon::now());
+
+        if($insert){
+            $insert->update(['encrypted_id'  => $encrypted_id]);
+        }
 
         $insert->assignRole($request->roles);
 
@@ -73,7 +81,7 @@ class UserController extends Controller
      */
     public function edit($slug)
     {
-        $user   = User::where('slug',$slug)->with('roles')->first();
+        $user   = User::where('encrypted_id',$slug)->with('roles')->first();
         $roles  = Role::get();
         return view('pages.users.edit',[
             'user'      => $user,
@@ -88,7 +96,11 @@ class UserController extends Controller
     public function update(Request $request, $slug)
     {
         // dd($request,$slug);
-        $user   = User::where('slug',$slug)->with('roles')->first();
+        $user   = User::where('encrypted_id',$slug)->with('roles')->first();
+        $user->update([
+            'gender'    => $request->gender,
+            'name'      => $request->name,
+        ]);
         $user->syncRoles($request->roles);
 
         return redirect('user/index');
