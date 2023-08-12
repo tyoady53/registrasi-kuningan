@@ -11,4 +11,12 @@ class RolePlaySubGroup extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function questions(){
+        return $this->hasMany(RolePlayQuestion::class,'sub_group_id','id');
+    }
+
+    public function groups(){
+        return $this->belongsTo(RolePlayGroup::class, 'id','group_id');
+    }
 }

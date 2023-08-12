@@ -20,7 +20,6 @@ class ChoiceTestController extends Controller
      */
     public function index()
     {
-        // dd(auth()->user());
         $rolename = '';
         $user_id = auth()->user()->id;
         $user = User::where('id',$user_id)->first();
@@ -45,7 +44,10 @@ class ChoiceTestController extends Controller
                 return $question;
             });
         }
-        // dd($questions);
+
+        if($rolename == 'Judge'){
+            return view('pages.errors.forbidden403');
+        }
         return view('pages.multiple-choice',[
             'role'      => $rolename,
             'data'      => $data,

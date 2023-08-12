@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+// use App\Models\Role;
 
 class User extends Authenticatable
 {
@@ -52,7 +53,12 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
-    public function judges(){
+    public function rolePlayGroups()
+    {
+        return $this->hasMany(RolePlayGroup::class, 'role_id');
+    }
+
+    public function judges() {
         return $this->hasMany(JudgesHasUser::class,'judge_id','id');
     }
 }

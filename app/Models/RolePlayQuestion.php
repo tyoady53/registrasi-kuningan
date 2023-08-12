@@ -11,4 +11,8 @@ class RolePlayQuestion extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function user_answer(){
+        return $this->hasMany(RolePlaySubGroup::class,'group_id','id');
+    }
 }

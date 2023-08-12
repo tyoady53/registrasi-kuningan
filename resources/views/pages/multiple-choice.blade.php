@@ -25,7 +25,7 @@
                     <div class="nav-wrapper position-relative end-0">
                         <ul class="nav nav-pills nav-fill p-1" style="background: #fff;">
                             <li class="nav-item">
-                                <form name="myform" action="{{ route('test-create') }}" method="post">
+                                <form name="myform" action="{{ route('test-mulitple_choice-create') }}" method="post">
                                     @csrf
                                     <button class="btn btn-primary" type="submit">
                                         <span class="ms-2">Start Test</span>

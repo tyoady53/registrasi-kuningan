@@ -12,6 +12,10 @@ class ChoiceTestAnswer extends Model
         'id',
     ];
 
+    protected $hidden = [
+        'value',
+    ];
+
     public function question(){
         return $this->belongsTo(ChoiceTestQuestion::class,'id','question_id');
     }

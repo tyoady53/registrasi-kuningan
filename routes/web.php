@@ -27,8 +27,10 @@ use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\ChoiceTestController;
 use App\Http\Controllers\JudgesHasUserController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\RolePlayController;
 use App\Http\Controllers\UserController;
 use App\Models\JudgesHasUser;
+use App\Models\RolePlay;
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
 	Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
@@ -74,7 +76,16 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::prefix('test')->group(function () {
-        Route::get('/mulitple_choice', [ChoiceTestController::class, 'index'])->name('test-mulitple_choice');
-        Route::post('/create', [ChoiceTestController::class, 'create'])->name('test-create');
+        Route::prefix('mulitple_choice')->group(function () {
+            Route::get('/index', [ChoiceTestController::class, 'index'])->name('test-mulitple_choice');
+            Route::post('/create', [ChoiceTestController::class, 'create'])->name('test-mulitple_choice-create');
+        });
+        Route::prefix('role_play')->group(function () {
+            Route::get('/index', [RolePlayController::class, 'index'])->name('role_play');
+            Route::get('/show/{encrypted}', [RolePlayController::class, 'show'])->name('role_play.show');
+            Route::post('/create', [RolePlayController::class, 'create'])->name('role_play.create');
+        });
+        // Route::get('/mulitple_choice', [ChoiceTestController::class, 'index'])->name('test-mulitple_choice');
+        // Route::post('/create', [ChoiceTestController::class, 'create'])->name('test-create');
     });
 });

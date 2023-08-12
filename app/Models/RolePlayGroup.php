@@ -11,4 +11,8 @@ class RolePlayGroup extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function sub_groups(){
+        return $this->hasMany(RolePlaySubGroup::class,'group_id','id');
+    }
 }
