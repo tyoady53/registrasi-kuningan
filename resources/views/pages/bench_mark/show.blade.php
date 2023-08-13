@@ -1,7 +1,7 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Role Play Test'])
+    @include('layouts.navbars.auth.topnav', ['title' => 'User Management'])
     <div class="card shadow-lg mx-4 card-profile-bottom" id="user_info">
         <div class="card-body p-3">
             <div class="row gx-4">
@@ -16,7 +16,7 @@
                             {{ $user->name ?? '' }}
                         </h5>
                         <p class="mb-0 font-weight-bold text-sm">
-                            {{ $user->roles[0]->name }}
+                            Public Relations
                         </p>
                     </div>
                 </div>
@@ -35,30 +35,29 @@
                             <thead>
                                 <tr>
                                     <th scope="col" style="width: 80%;" class="text-center"> Question </th>
-                                    <th scope="col" style="width: 10%;" class="text-center">Yes</th>
-                                    <th scope="col" style="width: 10%;" class="text-center">No</th>
+                                    <th scope="col" style="width: 10%;" class="text-center">Score</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($role_plays as $role_play)
+                                @foreach ($bench_marks as $bench_mark)
                                 <tr>
-                                    <td colspan="3" style="background:blue;color:white;"><strong>{{ $role_play->name }}</strong></td>
+                                    <td colspan="2" style="background:blue;color:white;"><strong>{{ $bench_mark->criteria }}</strong></td>
                                 </tr>
-                                    @foreach ($role_play->sub_groups as $sub_group)
-                                        @if (str_contains($sub_group->gender, $user->gender))
-                                            @if($sub_group->name)
-                                            <tr>
-                                                <td colspan="3" style="background:lightblue;color:black;">{{ $sub_group->name }}</td>
-                                            </tr>
-                                            @endif
-                                            @foreach ($sub_group->questions as $question)
-                                            <tr>
-                                                <td>{{ $question->question }}</td>
-                                                <td class="text-center"><input class="form-check-input" type="radio" value="yes-{{ $question->id }}" name="question-{{ $question->id }}" id="{{ $question->id }}"></td>
-                                                <td class="text-center"><input class="form-check-input" type="radio" value="no-{{ $question->id }}" name="question-{{ $question->id }}" id="{{ $question->id }}"></td>
-                                            </tr>
-                                            @endforeach
-                                        @endif
+                                    @foreach ($bench_mark->questions as $question)
+                                    <tr>
+                                        <td>{{ $question->parameter_question }}</td>
+                                        <td class="text-center">
+                                            <select class="form-control" name="question-{{ $question->id }}">
+                                                <option value="" disabled selected>Choose One</option>
+                                                <option value="100">100</option>
+                                                <option value="90">90</option>
+                                                <option value="80">80</option>
+                                                <option value="70">70</option>
+                                                <option value="60">60</option>
+                                            </select>
+                                        </td>
+                                        {{-- <td class="text-center"><input class="form-check-input" type="radio" value="no-{{ $question->id }}" name="question-{{ $question->id }}" id="{{ $question->id }}"></td> --}}
+                                    </tr>
                                     @endforeach
                                 @endforeach
                             </tbody>

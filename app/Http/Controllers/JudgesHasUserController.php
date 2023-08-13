@@ -28,7 +28,8 @@ class JudgesHasUserController extends Controller
         // dd($users);
 
         return view('pages.judges.index',[
-            'users'      => $users,
+            'judge'     => $judge,
+            'users'     => $users,
         ]);
     }
 

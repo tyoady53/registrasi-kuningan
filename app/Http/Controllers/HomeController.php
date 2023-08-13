@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BenchMarkGroup;
+use App\Models\BenchMarkQuestion;
 use App\Models\RolePlayGroup;
 use App\Models\RolePlayQuestion;
 use App\Models\RolePlaySubGroup;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Benchmark;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -36,9 +39,9 @@ class HomeController extends Controller
             $rolename = $rolenames[0];
         }
         // $a = '';
-        // $rolePlay = RolePlayQuestion::all();
+        // $rolePlay = BenchMarkQuestion::all();
         // foreach($rolePlay as $role){
-        //     $a .= "DB::table('role_play_questions')->insert(['id' => '".$role->id."','sub_group_id' => '".$role->sub_group_id."','question' => '".$role->question."','created_at' => '".$role->created_at."','updated_at' => '".$role->updated_at."']);#n";
+        //     $a .= "DB::table('bench_mark_questions')->insert(['id' => '".$role->id."','criteria_id' => '".$role->criteria_id."','parameter_question' => '".$role->parameter_question."','score_weight' => '".$role->score_weight."','created_at' => '".$role->created_at."','updated_at' => '".$role->updated_at."']);#n";
         // }
         // dd($a);
         // dd($rolename);

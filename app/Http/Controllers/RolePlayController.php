@@ -17,11 +17,7 @@ class RolePlayController extends Controller
      */
     public function index()
     {
-        // dd(JudgesHasUser::where('judge_id',auth()->user()->id)->with(['user' => function ($query) {
-        //     $query->with(['roles']);
-        // }])->get());
         $me = auth()->user()->id;
-
         // $users  = User::whereNot('id',1)->with('judges.user')
         // ->when('judges', function ($query) use ($me) {
         //     return  $query->whereHas('judges',function ($query) use ($me) {
@@ -34,9 +30,10 @@ class RolePlayController extends Controller
         // //     // }]);
         // // }])
         // ->get();
-
-        $users = JudgesHasUser::with('user')->where('judge_id',$me)->get();
+        $judge  = User::where('id',auth()->user()->id)->with('roles')->first();
+        $users = JudgesHasUser::with('user.roles')->where('judge_id',$me)->get();
         return view('pages.role_play.index',[
+            'judge' => $judge,
             'users' => $users
         ]);
     }

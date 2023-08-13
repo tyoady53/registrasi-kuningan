@@ -1,7 +1,7 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Role Play Test '])
+    @include('layouts.navbars.auth.topnav', ['title' => 'Bench Mark Test'])
     <div class="card shadow-lg mx-4 card-profile-bottom" id="user_info">
         <div class="card-body p-3">
             <div class="row gx-4">
@@ -16,7 +16,7 @@
                             {{ auth()->user()->name ?? '' }}
                         </h5>
                         <p class="mb-0 font-weight-bold text-sm">
-                            {{ $judge->roles[0]->name }}
+                            Public Relations
                         </p>
                     </div>
                 </div>
@@ -161,7 +161,7 @@
     <script>
         function myFunction(encrypted_id) {
             var base_url = window.location.origin;
-            window.location.href = base_url+'/test/role_play/show/'+encrypted_id;
+            window.location.href = base_url+'/test/bench_mark/show/'+encrypted_id;
             // console.log(base_url+'/test/role_play/show/'+encrypted_id)
         }
     </script>

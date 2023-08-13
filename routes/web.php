@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BenchMarkScoreController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,7 @@ use App\Http\Controllers\RolePlayController;
 use App\Http\Controllers\UserController;
 use App\Models\JudgesHasUser;
 use App\Models\RolePlay;
+use Illuminate\Support\Benchmark;
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
 	Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
@@ -81,9 +83,15 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/create', [ChoiceTestController::class, 'create'])->name('test-mulitple_choice-create');
         });
         Route::prefix('role_play')->group(function () {
-            Route::get('/index', [RolePlayController::class, 'index'])->name('role_play');
-            Route::get('/show/{encrypted}', [RolePlayController::class, 'show'])->name('role_play.show');
-            Route::post('/create', [RolePlayController::class, 'create'])->name('role_play.create');
+            Route::get('/index', [RolePlayController::class, 'index'])->name('test-role_play');
+            Route::get('/show/{encrypted}', [RolePlayController::class, 'show'])->name('test-role_play.show');
+            Route::post('/create', [RolePlayController::class, 'create'])->name('test-role_play.create');
+        });
+
+        Route::prefix('bench_mark')->group(function () {
+            Route::get('/index', [BenchMarkScoreController::class, 'index'])->name('test-bench_mark');
+            Route::get('/show/{encrypted}', [BenchMarkScoreController::class, 'show'])->name('test-bench_mark.show');
+            Route::post('/create', [BenchMarkScoreController::class, 'create'])->name('test-bench_mark.create');
         });
         // Route::get('/mulitple_choice', [ChoiceTestController::class, 'index'])->name('test-mulitple_choice');
         // Route::post('/create', [ChoiceTestController::class, 'create'])->name('test-create');
