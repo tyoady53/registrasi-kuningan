@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BenchMarkGroup;
 use App\Models\BenchMarkQuestion;
+use App\Models\QuickResponseQuestion;
 use App\Models\RolePlayGroup;
 use App\Models\RolePlayQuestion;
 use App\Models\RolePlaySubGroup;
@@ -39,9 +40,9 @@ class HomeController extends Controller
             $rolename = $rolenames[0];
         }
         // $a = '';
-        // $rolePlay = BenchMarkQuestion::all();
+        // $rolePlay = QuickResponseQuestion::all();
         // foreach($rolePlay as $role){
-        //     $a .= "DB::table('bench_mark_questions')->insert(['id' => '".$role->id."','criteria_id' => '".$role->criteria_id."','parameter_question' => '".$role->parameter_question."','score_weight' => '".$role->score_weight."','created_at' => '".$role->created_at."','updated_at' => '".$role->updated_at."']);#n";
+        //     $a .= "DB::table('quick_response_questions')->insert(['id' => '".$role->id."','parameter_question' => '".$role->parameter_question."','score_weight' => '".$role->score_weight."','created_at' => '".$role->created_at."','updated_at' => '".$role->updated_at."']);\n";
         // }
         // dd($a);
         // dd($rolename);

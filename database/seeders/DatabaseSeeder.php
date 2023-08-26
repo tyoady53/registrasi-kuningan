@@ -23,5 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RolePlayGroup::class);
         $this->call(RolePlaySubGroup::class);
         $this->call(RolePlayQuestions::class);
+        $this->call(BenchMarkGroup::class);
+        $this->call(BenchMarkQuestions::class);
+        $this->call(QuickResponseQuestions::class);
     }
 }

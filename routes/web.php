@@ -27,6 +27,7 @@ use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\ChoiceTestController;
 use App\Http\Controllers\JudgesHasUserController;
+use App\Http\Controllers\QuickResponseController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RolePlayController;
 use App\Http\Controllers\UserController;
@@ -92,6 +93,12 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/index', [BenchMarkScoreController::class, 'index'])->name('test-bench_mark');
             Route::get('/show/{encrypted}', [BenchMarkScoreController::class, 'show'])->name('test-bench_mark.show');
             Route::post('/create', [BenchMarkScoreController::class, 'create'])->name('test-bench_mark.create');
+        });
+
+        Route::prefix('quick_response')->group(function () {
+            Route::get('/index', [QuickResponseController::class, 'index'])->name('test-quick_response');
+            Route::get('/show/{encrypted}', [QuickResponseController::class, 'show'])->name('test-quick_response.show');
+            Route::post('/create', [QuickResponseController::class, 'create'])->name('test-quick_response.create');
         });
         // Route::get('/mulitple_choice', [ChoiceTestController::class, 'index'])->name('test-mulitple_choice');
         // Route::post('/create', [ChoiceTestController::class, 'create'])->name('test-create');
