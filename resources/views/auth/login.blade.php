@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container position-sticky z-index-sticky top-0">
+    {{-- <div class="container position-sticky z-index-sticky top-0">
         <div class="row">
             <div class="col-12">
                 @include('layouts.navbars.guest.navbar')
             </div>
         </div>
-    </div>
+    </div> --}}
     <main class="main-content  mt-0">
         <section>
             <div class="page-header min-vh-100">
@@ -16,32 +16,36 @@
                         <div class="col-lg-3"></div>
                         <div class="col-xl-6 col-lg-6 col-md-6 d-flex flex-column mx-lg-0 mx-auto">
                             <div class="card card-primary">
-                                <div class="card-header pb-0 text-start">
+                                <div class="card-header pb-0 text-center">
+                                    <h2>ES-EXCELLENT</h2>
                                     <h4 class="font-weight-bolder">Sign In</h4>
-                                    <p class="mb-0">Enter your email and password to sign in</p>
+                                    {{-- <p class="mb-0">Enter your email and password to sign in</p> --}}
                                 </div>
                                 <div class="card-body">
                                     <form role="form" method="POST" action="{{ route('login.perform') }}">
                                         @csrf
                                         @method('post')
-                                        <div class="flex flex-col mb-3">
-                                            <input type="email" name="email" class="form-control form-control-lg" value="{{ old('email') ?? 'admin@argon.com' }}" aria-label="Email">
+                                        {{-- <div class="flex flex-col mb-3"> --}}
+                                        <div class="form-floating mt-3 mb-3">
+                                            <input type="text" name="email" id="email" class="form-control" value="{{ old('email') ?? 'admin@argon.com' }}">
+                                            <label for="email">User Name</label>
                                             @error('email') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                         </div>
-                                        <div class="flex flex-col mb-3">
-                                            <input type="password" name="password" class="form-control form-control-lg" aria-label="Password" value="secret" >
-                                            @error('password') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
+                                        <div class="form-floating mt-3 mb-3">
+                                            <input type="password" id="password" name="password" class="form-control">
+                                            <label for="password">Password</label>
+                                            {{-- @error('password') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror --}}
                                         </div>
-                                        <div class="form-check form-switch">
+                                        {{-- <div class="form-check form-switch">
                                             <input class="form-check-input" name="remember" type="checkbox" id="rememberMe">
                                             <label class="form-check-label" for="rememberMe">Remember me</label>
-                                        </div>
+                                        </div> --}}
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
                                         </div>
                                     </form>
                                 </div>
-                                <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                                {{-- <div class="card-footer text-center pt-0 px-lg-2 px-1">
                                     <p class="mb-1 text-sm mx-auto">
                                         Forgot you password? Reset your password
                                         <a href="{{ route('reset-password') }}" class="text-primary text-gradient font-weight-bold">here</a>
@@ -52,7 +56,7 @@
                                         Don't have an account?
                                         <a href="{{ route('register') }}" class="text-primary text-gradient font-weight-bold">Sign up</a>
                                     </p>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         {{-- <div

@@ -2,7 +2,7 @@
 
 @section('content')
     @include('layouts.navbars.auth.topnav', ['title' => 'Create New Role'])
-    <div class="card shadow-lg mx-4 card-profile-bottom" id="user_info">
+    <div class="card shadow-lg mx-4 mt-8" id="user_info">
         <div class="card-body p-3">
             <div class="row gx-4">
                 <form role="form" method="post" action="{{ route('role.store') }}">

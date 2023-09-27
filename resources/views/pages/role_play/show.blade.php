@@ -2,7 +2,7 @@
 
 @section('content')
     @include('layouts.navbars.auth.topnav', ['title' => 'Role Play Test'])
-    <div class="card shadow-lg mx-4 card-profile-bottom" id="user_info">
+    <div class="card shadow-lg mx-4 mt-8" id="user_info">
         <div class="card-body p-3">
             <div class="row gx-4">
                 <div class="col-auto">
