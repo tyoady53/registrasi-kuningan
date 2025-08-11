@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-        /**
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -34,20 +34,14 @@ class HomeController extends Controller
     {
         $rolename = '';
         $user_id = auth()->user()->id;
-        $user = User::where('id',$user_id)->first();
-        $rolenames = $user->getRoleNames();
-        if(count($rolenames)){
-            $rolename = $rolenames[0];
-        }
-        // $a = '';
-        // $rolePlay = QuickResponseQuestion::all();
-        // foreach($rolePlay as $role){
-        //     $a .= "DB::table('quick_response_questions')->insert(['id' => '".$role->id."','parameter_question' => '".$role->parameter_question."','score_weight' => '".$role->score_weight."','created_at' => '".$role->created_at."','updated_at' => '".$role->updated_at."']);\n";
+        $user = auth()->user();
+        // $rolenames = $user->getRoleNames();
+        // if(count($rolenames)){
+        //     $rolename = $rolenames[0];
         // }
-        // dd($a);
-        // dd($rolename);
-        return view('pages.dashboard',[
-            'role'      => $rolename,
+        return view('pages.dashboard', [
+            // 'role'      => $rolename,
+            'user'      => $user,
         ]);
     }
 }
